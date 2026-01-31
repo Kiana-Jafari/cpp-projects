@@ -4,15 +4,19 @@
 
 using namespace std;
 
+// Declare and initialize a global variable called `count` to keep track of the products
+int count = 0;
+
 // Prototype the functions
-void ReadFromFile(string names[], float prices[], int quantities[], int& count);
-void AddProduct(string names[], float prices[], int quantities[], int& count, int maxSize);
-void DisplayItems(string names[], float prices[], int quantities[], int& count);
-float InventoryValue(string names[], float prices[], int quantities[], float values[], int& count);
-void LowStockProducts(string names[], int quantities[], int& count);
-void SearchProduct(string names[], float prices[], int quantities[], float values[], int& count);
-void SortProducts(string names[], float prices[], int quantities[], float values[], int& count);
-void SaveProducts(string names[], float prices[], int quantities[], int& count);
+void ReadFromFile(string names[], float prices[], int quantities[]);
+void AddProduct(string names[], float prices[], int quantities[], int maxSize);
+void DisplayItems(string names[], float prices[], int quantities[]);
+void ProductValue(string names[], float prices[], int quantities[], float values[]);
+void LowStockProducts(string names[], int quantities[]);
+void SearchProduct(string names[], float prices[], int quantities[], float values[]);
+void SortProducts(string names[], float prices[], int quantities[], float values[]);
+void EditInfo(string names[], float prices[], int quantities[]);
+void SaveProducts(string names[], float prices[], int quantities[]);
 
 int main()
 {
@@ -22,10 +26,8 @@ int main()
 
     string names[size];
     float prices[size];
-    int quantities[size];
+    int quantities[size], maxSize = size;
     float values[size];
-    int count = 0;
-    int maxSize = size;
 
     // Display the Cafe Menu
     cout << R"(=== Cafe Inventory Management System ===
@@ -39,68 +41,71 @@ int main()
     4. Display the Low-Stock Products
     5. Search for a Specific Product
     6. Sort the Products based on their Prices
-    7. Exit the Program and Save the Sorted Products in the File
+    7. Modify the Product's Price / Quantity
+    8. Exit the Program and Save the Sorted Products in the File
 
     Feel free to choose an option and play around with the program! 
     
     )";
 
-    ReadFromFile(names, prices, quantities, count);
+    ReadFromFile(names, prices, quantities);
 
     // Call the functions based on the user input
     while (true)
     {
-        cout << "Enter an option (add, display, value, low-stock, search, sort, exit): ";
+        cout << "Enter an option (add, display, value, low-stock, search, sort, modify, exit): ";
         cin >> option;
 
         if (option == "exit")
         break;
 
         else if (option == "add")
-        AddProduct(names, prices, quantities, count, maxSize);
+        AddProduct(names, prices, quantities, maxSize);
 
         else if (option == "display")
-        DisplayItems(names, prices, quantities, count);
+        DisplayItems(names, prices, quantities);
 
         else if (option == "value")
-        InventoryValue(names, prices, quantities, values, count);
+        ProductValue(names, prices, quantities, values);
 
         else if (option == "low-stock")
-        LowStockProducts(names, quantities, count);
+        LowStockProducts(names, quantities);
 
         else if (option == "search")
-        SearchProduct(names, prices, quantities, values, count);
+        SearchProduct(names, prices, quantities, values);
 
         else if (option == "sort")
-        SortProducts(names, prices, quantities, values, count);
+        SortProducts(names, prices, quantities, values);
+
+        else if (option == "modify")
+        EditInfo(names, prices, quantities);
 
         else
         cout << "Invalid option.\n";
     }
 
     // If the user enters 'exit', store the product information and quit the program
-    SaveProducts(names, prices, quantities, count);
+    SaveProducts(names, prices, quantities);
 
     return 0;
 }
 
-void ReadFromFile(string names[], float prices[], int quantities[], int& count)
+void ReadFromFile(string names[], float prices[], int quantities[])
 {
     // This function reads data from the text file and stores it in the arrays (parallel arrays).
     ifstream read_file("products.txt");
 
     while (read_file >> names[count] >> prices[count] >> quantities[count])
     {
-        // Read the next product
         count ++;
     }
 
     read_file.close();
 }
 
-void AddProduct(string names[], float prices[], int quantities[], int& count, int maxSize)
+void AddProduct(string names[], float prices[], int quantities[], int maxSize)
 {
-    // This function gets a product as input and adds it with its information to the array.
+    // This function gets a product as input and adds its information to the arrays.
     string name;
     float price;
     int quantity;
@@ -108,7 +113,7 @@ void AddProduct(string names[], float prices[], int quantities[], int& count, in
     // If the array has reached the maximum size (i.e. 50 items), exit the function
     if (count == maxSize)
     {
-        cout << "You reached the maximum size of addition. Choose another option. " << endl;
+        cout << "You reached the maximum size of addition. Choose another option: " << endl;
         return ;
     }
 
@@ -123,12 +128,12 @@ void AddProduct(string names[], float prices[], int quantities[], int& count, in
             cout << "The product already exists. Enter the quantity: ";
             cin >> quantity;
             quantities[item] += quantity;
-            return ; // Avoid adding the product to the array by exiting the function
+            return ;
         }
     }
 
     // Otherwise, add the product to the array
-    cout << "The product does not exist in the array. Enter its price and quantity: ";
+    cout << "Enter its price and quantity: ";
     cin >> price >> quantity;
 
     names[count] = name;
@@ -139,33 +144,29 @@ void AddProduct(string names[], float prices[], int quantities[], int& count, in
     count ++;
 }
 
-void DisplayItems(string names[], float prices[], int quantities[], int& count)
+void DisplayItems(string names[], float prices[], int quantities[])
 {
-    // This function displays all information about the products. If the file is empty, it will print a clear message.
+    // This function displays all information about the products.
     if (count == 0)
-    {
-        cout << "No products available. Try adding a few items. " << endl;
-    }
+    cout << "No products available. Try adding a few items. " << endl;
 
     else
     cout << "Product Name | Product Price | Product Quantity " << endl;
 
-    for (int i = 0; i < count; i++)
+    for (int item = 0; item < count; item++)
     {
-        cout << names[i] << " | " << prices[i] << " | " << quantities[i] << endl;
+        cout << names[item] << " | " << prices[item] << " | " << quantities[item] << endl;
     }
 }
 
-float InventoryValue(string names[], float prices[], int quantities[], float values[], int& count)
+void ProductValue(string names[], float prices[], int quantities[], float values[])
 {
     // This function calculates and displays the inventory value of each product.
     string product;
-    float value;
 
-    for (int i = 0; i < count; i++)
+    for (int item = 0; item < count; item++)
     {
-        value = prices[i] * quantities[i];
-        values[i] = value;
+        values[item] = prices[item] * quantities[item];
     }
 
     // Display the value of a specific product
@@ -175,38 +176,34 @@ float InventoryValue(string names[], float prices[], int quantities[], float val
     for (int item = 0; item < count; item++)
     {
         if (names[item] == product)
-        {
-            cout << product << " has an inventory value of " << values[item] << endl;
-        }
+        cout << product << " has an inventory value of " << values[item] << endl;
     }
-
-    return value;
 }
 
-void LowStockProducts(string names[], int quantities[], int& count)
+void LowStockProducts(string names[], int quantities[])
 {
     // This function displays the products that have a quantity below a certain threshold (5 units).
     int threshold = 5;
-    bool low_stock = false;
+    bool LowStock = false;
 
     cout << "Products that have a quantity below 5: " << endl;
     for (int item = 0; item < count; item++)
     {
         if (quantities[item] < threshold)
         {
-            low_stock = true;
-            cout << "Quantity of \'" << names[item] << "\' is " << quantities[item] << endl;
+            LowStock = true;
+            cout << names[item] << " | " << quantities[item] << endl;
         }
     }
 
     // No low-stock items
-    if (!low_stock)
+    if (!LowStock)
     cout << "No low-stock products" << endl;
 }
 
-void SearchProduct(string names[], float prices[], int quantities[], float values[], int& count)
+void SearchProduct(string names[], float prices[], int quantities[], float values[])
 {
-    // This function gets the name of a product from the user and prints the information about that item.
+    // This function gets the name of a product from the user and prints its information.
     string product;
     bool isPresent;
 
@@ -220,7 +217,7 @@ void SearchProduct(string names[], float prices[], int quantities[], float value
         if (names[item] == product)
         {
             isPresent = true;
-            cout << endl << "Product Name | Product Price | Product Quantity | Product Value: " << endl;
+            cout << "Product Name | Product Price | Product Quantity | Product Value: " << endl;
             cout << names[item] << " | " << prices[item] << " | " << quantities[item] << " | " << values[item] << endl;
             break;
         }
@@ -231,7 +228,7 @@ void SearchProduct(string names[], float prices[], int quantities[], float value
     cout << "Product not found" << endl;
 }
 
-void SortProducts(string names[], float prices[], int quantities[], float values[], int& count)
+void SortProducts(string names[], float prices[], int quantities[], float values[])
 {
     // This function uses Bubble Sort to sort the products based on their prices in ascending order.
     bool swapped;
@@ -253,11 +250,9 @@ void SortProducts(string names[], float prices[], int quantities[], float values
             }
         }
 
-        // If the two elements were not swapped (they were in the correct order), then break from the loop
+        // If the two elements were in the correct order break from the loop
         if (!swapped)
-        {
-            break;
-        } 
+        break;
     }
 
     // Display the sorted array
@@ -268,16 +263,52 @@ void SortProducts(string names[], float prices[], int quantities[], float values
     }
 }
 
-void SaveProducts(string names[], float prices[], int quantities[], int& count)
+void EditInfo(string names[], float prices[], int quantities[])
 {
-    // This function saves and stores all the modifications on the products to the text file.
+    // This function gets the name of the product and edits either its price, or its quantity.
+    string product, option;
+    float price;
+    int quantity;
+
+    cout << "Enter the product name: ";
+    cin >> product;
+
+    cout << "Which property do you want to modify?: (price / quantity) ";
+    cin >> option;
+
+    // Update and edit the product info based on the user's input.
+    if (option == "price")
+    {
+        cout << "Enter the new price: ";
+        cin >> price;
+    }
+
+    else if (option == "quantity")
+    {
+        cout << "Enter the new quantity: ";
+        cin >> quantity;
+    }
+
+    // Search for the product and update its info.
+    for (int item = 0; item < count; item++)
+    {
+        if (names[item] == product && option == "price")
+        prices[item] = price;
+
+        else if (names[item] == product && option == "quantity")
+        quantities[item] = quantity;
+    }
+}
+
+void SaveProducts(string names[], float prices[], int quantities[])
+{
+    // This function saves and stores all the modifications on the products in the text file.
     ofstream write_file("products.txt");
 
     for (int item = 0; item < count; item++)
     {
-        write_file << names[item] << " " << prices[item] << " " << quantities[item] << " " << '\n';
+        write_file << names[item] << " " << prices[item] << " " << quantities[item] << " " << "\n";
     }
 
-    // Close the file
     write_file.close();
 }
