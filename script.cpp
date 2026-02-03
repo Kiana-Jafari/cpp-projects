@@ -27,7 +27,7 @@ int main()
     string names[size];
     float prices[size];
     int quantities[size], maxSize = size;
-    float values[size];
+    float values[size] = {0};
 
     // Display the Cafe Menu
     cout << R"(=== Cafe Inventory Management System ===
@@ -312,3 +312,4 @@ void SaveProducts(string names[], float prices[], int quantities[])
 
     write_file.close();
 }
+
