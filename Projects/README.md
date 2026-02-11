@@ -2,7 +2,7 @@
 
 ## Overview
 This project is a **console-based Parking Garage Management System** designed for a **Basic Programming (BP / CS1)** course.
-It simulates how a real American-style multi-level parking garage operates.
+It simulates how a real Iranian-style multi-level parking garage operates.
 
 The program manages:
 - Vehicle parking and exit
@@ -44,7 +44,7 @@ All parked vehicles are stored in memory **and persisted to a text file**.
 ### Vehicle
 | Field | Description |
 |------|------------|
-| License Plate | Unique identifier (string, e.g. `ABC1234`) |
+| License Plate | Unique identifier (string, e.g. `29D728|63IR`) |
 | Vehicle Type | Car / Motorcycle / Truck |
 | Entry Time | Minutes since midnight (integer) |
 | Level | Parking level number |
@@ -130,8 +130,8 @@ Helps understand garage capacity in real time.
 **File Format:**
 ```
 Plate Type EntryTime Level Spot
-ABC123 Car 540 2 15
-XYZ789 Truck 615 1 4
+11B902|33IR Car 540 2 15
+87A315|44IR Truck 615 1 4
 ```
 
 ---
@@ -192,7 +192,7 @@ Sorting affects display only.
 
 ### Test Case 2: Duplicate Vehicle
 **Input:**
-- Plate: ABC123
+- Plate: 44N637|88IR
 
 **Expected Result:**
 - Error message: Vehicle already exists
@@ -201,7 +201,7 @@ Sorting affects display only.
 
 ### Test Case 3: Vehicle Exit
 **Input:**
-- Plate: ABC123
+- Plate: 12B365|94IR
 - Exit time: 600
 
 **Expected Result:**
@@ -213,7 +213,7 @@ Sorting affects display only.
 
 ### Test Case 4: Search Not Found
 **Input:**
-- Plate: NOT999
+- Plate: 53T482|66IR
 
 **Expected Result:**
 - Vehicle not found message
@@ -223,8 +223,8 @@ Sorting affects display only.
 ### Test Case 5: Load From File
 **Input File:**
 ```
-AAA111 Car 500 1 3
-BBB222 Motorcycle 530 2 7
+42D616|13IR Car 500 1 3
+68J321|42IR Motorcycle 530 2 7
 ```
 
 **Expected Result:**
