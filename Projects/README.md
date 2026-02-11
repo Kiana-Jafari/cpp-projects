@@ -25,8 +25,6 @@ By completing this project, you will practice:
 - Edge case handling
 - Writing readable, maintainable code
 
-This is equivalent to a **final project** in international CS1 / BP courses.
-
 ---
 
 ## Program Concept (How It Works)
