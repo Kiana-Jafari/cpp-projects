@@ -44,7 +44,7 @@ All parked vehicles are stored in memory **and persisted to a text file**.
 ### Vehicle
 | Field | Description |
 |------|------------|
-| License Plate | Unique identifier (string, e.g. `29D728|63IR`) |
+| License Plate | Unique identifier (string, e.g. `29D72863IR`) |
 | Vehicle Type | Car / Motorcycle / Truck |
 | Entry Time | Minutes since midnight (integer) |
 | Level | Parking level number |
