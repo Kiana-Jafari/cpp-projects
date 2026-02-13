@@ -16,7 +16,7 @@ This project focuses on **logic, control flow, arrays, file I/O, and modular des
 ---
 
 ## Learning Objectives
-By completing this project, you will practice:
+What will be covered in this project:
 - Structured programming
 - Working with arrays and structs/classes
 - File input/output (text files)
@@ -31,7 +31,7 @@ By completing this project, you will practice:
 The parking garage:
 - Has **multiple levels**
 - Each level contains parking spots
-- Each spot supports a specific vehicle type
+- Each level supports a specific vehicle type (i.e. first level for Motorcycle, second one for the Cars, and the third one for the Truck)
 - Vehicles are parked if a compatible spot is available
 - When a vehicle exits, a fee is calculated based on time and type
 
@@ -44,7 +44,7 @@ All parked vehicles are stored in memory **and persisted to a text file**.
 ### Vehicle
 | Field | Description |
 |------|------------|
-| License Plate | Unique identifier (string, e.g. `29D72863IR`) |
+| License Plate | Unique identifier (string, e.g. `29D728IR63`) |
 | Vehicle Type | Car / Motorcycle / Truck |
 | Entry Time | Minutes since midnight (integer) |
 | Level | Parking level number |
@@ -55,7 +55,6 @@ All parked vehicles are stored in memory **and persisted to a text file**.
 |------|------------|
 | Level | Level number |
 | Spot Number | Spot index |
-| Spot Type | Allowed vehicle type |
 | Occupied | Boolean flag |
 
 ---
@@ -130,8 +129,8 @@ Helps understand garage capacity in real time.
 **File Format:**
 ```
 Plate Type EntryTime Level Spot
-11B902|33IR Car 540 2 15
-87A315|44IR Truck 615 1 4
+11B902|IR33 Car 540 2 15
+87A315|IR44 Truck 615 1 4
 ```
 
 ---
@@ -180,7 +179,7 @@ Sorting affects display only.
 
 ### Test Case 1: Normal Parking
 **Input:**
-- Plate: ABC123
+- Plate: 44N637|IR88
 - Type: Car
 - Time: 540
 
@@ -192,7 +191,7 @@ Sorting affects display only.
 
 ### Test Case 2: Duplicate Vehicle
 **Input:**
-- Plate: 44N637|88IR
+- Plate: 44N637|IR88
 
 **Expected Result:**
 - Error message: Vehicle already exists
@@ -201,7 +200,7 @@ Sorting affects display only.
 
 ### Test Case 3: Vehicle Exit
 **Input:**
-- Plate: 12B365|94IR
+- Plate: 12B365|IR94
 - Exit time: 60
 
 **Expected Result:**
@@ -213,7 +212,7 @@ Sorting affects display only.
 
 ### Test Case 4: Search Not Found
 **Input:**
-- Plate: 53T482|66IR
+- Plate: 53T482|IR66
 
 **Expected Result:**
 - Vehicle not found message
@@ -223,8 +222,8 @@ Sorting affects display only.
 ### Test Case 5: Load From File
 **Input File:**
 ```
-42D616|13IR Car 500 1 3
-68J321|42IR Motorcycle 530 2 7
+42D616|IR43 Car 500 1 3
+68J321|IR67 Motorcycle 530 2 7
 ```
 
 **Expected Result:**
