@@ -202,7 +202,7 @@ Sorting affects display only.
 ### Test Case 3: Vehicle Exit
 **Input:**
 - Plate: 12B365|94IR
-- Exit time: 600
+- Exit time: 60
 
 **Expected Result:**
 - Duration: 60 minutes
