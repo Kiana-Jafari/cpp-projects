@@ -108,8 +108,7 @@ Used for monitoring garage status.
 ### 4. Show Available Spots
 Shows:
 - Total free spots
-- Free spots per level
-- Free spots per vehicle type
+- Free spots per level (vehicle type)
 
 Helps understand garage capacity in real time.
 
