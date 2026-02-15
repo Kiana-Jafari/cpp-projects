@@ -46,7 +46,7 @@ int mapFeeVehicle(string type);
 
 int main()
 {
-    int count = 0; // Variable to keep track of the number of the vehicles
+    int count = 0; // Variable to keep track of the number of vehicles
     int option;
 
     // Declare an array of structures for both vehicles and spots
@@ -114,7 +114,7 @@ int main()
 
 void ReadFromFile(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& count)
 {
-    // This function reads the vehicles information from the text file and stores them in the arrays.
+    // This function reads the vehicles information from the text file and stores it in the arrays.
     ifstream read_file("vehicles.txt");
 
     while (read_file >> vehicles[count].licensePlate >> vehicles[count].vehicleType >> vehicles[count].entryTime >> vehicles[count].level >> vehicles[count].spotNumber)
@@ -152,14 +152,14 @@ void DisplayVehicles(Vehicle vehicles[], int& count)
 void FreeSpots(ParkingSpot spots[LEVELS][MAX_SPOTS])
 {
     // This function displays all free spots per level (vehicle type).
-    cout << "level | spot number " << endl;
+    cout << "level | spot number" << endl;
     for (int i = 0; i < LEVELS; i++)
     {
-        cout << "Free Spots per level " << (i + 1) << endl;
+        cout << "Free Spots per level " << i << endl;
 
         for (int j = 0; j < MAX_SPOTS; j++)
         {
-            if (spots[i][j].occupied == false)
+            if (spots[i][j].occupied == false) // Free spots
             {
                 cout << i << "-" << j << endl;
             }
@@ -181,7 +181,7 @@ void ParkVehicle(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& 
         return ;
     }
 
-    // Get the plate of the vehicle
+    // Get the new vehicle info
     string plate, type;
     int time, level;
 
@@ -193,7 +193,7 @@ void ParkVehicle(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& 
     {
         if (vehicles[i].licensePlate == plate)
         {
-            cout << "The vehicle already exists. " << endl;
+            cout << "Vehicle already exists. " << endl;
             return ;
         }
     }
@@ -202,7 +202,7 @@ void ParkVehicle(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& 
     cout << "Enter the entry time: ";
     cin >> time;
 
-    level = mapVehicleType(type);
+    level = mapVehicleType(type); // Get the level of the vehicle based on its type
 
     for (int i = 0; i < MAX_SPOTS; i++)
     {
@@ -227,15 +227,13 @@ void SearchVehicle(Vehicle vehicles[], int& count)
 {
     // This function gets the license plate of a vehicle and prints its information.
     string plate;
-    bool isFound;
+    bool isFound = false;
 
     cout << "Enter the vehicle plate: ";
     cin >> plate;
 
     for (int i = 0; i < count; i++)
     {
-        isFound = false;
-
         if (vehicles[i].licensePlate == plate)
         {
             isFound = true;
@@ -274,15 +272,13 @@ void SortVehicle(Vehicle vehicles[], int& count)
         }
 
         if (!swapped)
-        {
-            break;
-        }
+        break;
     }
 }
 
 void VehicleFee(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& count)
 {
-    // This function gets the license plate of a vehicle and removes it (exits).
+    // This function gets the license plate of a vehicle and the exit time and calculates the fee (exits).
     string plate;
     int exitTime;
     float fee = 0.0;
@@ -301,7 +297,7 @@ void VehicleFee(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& c
             int spotNumber = vehicles[i].spotNumber;
             int level = vehicles[i].level;
 
-            int rate = mapFeeVehicle(type);
+            int rate = mapFeeVehicle(type); // Get the rate based on the vehicle type
 
             spots[level][spotNumber].occupied = false; // Free the spot
 
@@ -321,7 +317,7 @@ void VehicleFee(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& c
                 vehicles[j].spotNumber = vehicles[j + 1].spotNumber;
             }
 
-            break;
+            break; // Stop once the vehicle has been removed
         }
     }
 
@@ -342,10 +338,12 @@ void SaveVehicles(Vehicle vehicles[], int& count)
     write_file.close();
 }
 
+// HELPER FUNCTIONS
+
 int mapVehicleType(string type)
 {
     // This function gets the type of the vehicle and returns the associated level.
-    map <string, int> VehicleType = {
+    map<string, int> VehicleType = {
         {"Motorcycle", 0}, {"Car", 1}, {"Truck", 2}
     };
 
@@ -357,7 +355,7 @@ int mapVehicleType(string type)
 int mapFeeVehicle(string type)
 {
     // This function gets the type of the vehicle and returns the fee based on the type.
-    map <string, int> Fee = {
+    map<string, int> Fee = {
         {"Motorcycle", 3}, {"Car", 5}, {"Truck", 8}
     };
 
