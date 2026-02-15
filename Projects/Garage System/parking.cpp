@@ -68,7 +68,6 @@ int main()
     cout << "\n";
 
     // Call the functions based on the user input
-
     while (true)
     {
         cout << "Enter an option: ";
