@@ -3,6 +3,7 @@ This repository contains all files, source code of projects, and assignments wri
 
 1. Projects:
   - <a href='https://github.com/Kiana-Jafari/cpp-projects/blob/e17c87f59b8d96a04a988d03492a07af0a6b71a1/Projects/script.cpp'>Store Inventory Management System | Uni's Final Course Project (ICSP)</a>
+  - <a href='https://github.com/Kiana-Jafari/cpp-projects/tree/93cbe9decdfdbde4e754463e259c13bd5a3f20d6/Projects/Garage%20System'>Smart Parking Garage Management System</a> 
 
 2. CS50 Computer Science Course Assignments
 
