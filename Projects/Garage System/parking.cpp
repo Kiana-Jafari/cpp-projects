@@ -39,8 +39,8 @@ void FreeSpots(ParkingSpot spots[LEVELS][MAX_SPOTS]);
 void ParkVehicle(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& count);
 void SearchVehicle(Vehicle vehicles[], int& count);
 void SortVehicle(Vehicle vehicles[], int& count);
-void SaveVehicles(Vehicle vehicles[], int& count);
 void VehicleFee(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& count);
+void SaveVehicles(Vehicle vehicles[], int& count);
 int mapVehicleType(string type);
 int mapFeeVehicle(string type);
 
