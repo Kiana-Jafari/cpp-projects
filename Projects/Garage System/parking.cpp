@@ -104,6 +104,9 @@ int main()
             
             case 7:
                 VehicleFee(vehicles, spots, count);
+
+            default:
+                cout << "Invalid option\n";
         }
     }
 
