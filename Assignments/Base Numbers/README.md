@@ -75,6 +75,8 @@ Base: 7
 Shift key: 3
 ```
 
+**Approach:**
+
 ```
 H = 72 → 132₇
 i = 105 → 210₇
@@ -85,7 +87,8 @@ Shift digits +3 mod 7:
 210 → 543
 ```
 
-**Output**
+**Output:**
+
 ```
 465 543
 ```
