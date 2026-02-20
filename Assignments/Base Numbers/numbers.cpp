@@ -148,7 +148,7 @@ string DecimalToBase(int number, int radix)
     {
         digit = number % radix;
 
-        if (digit < 10)
+        if (digit >= 0 && digit < 10)
         num = to_string(digit) + num;
 
         else
