@@ -92,3 +92,29 @@ Shift digits +3 mod 7:
 ```
 465 543
 ```
+
+---
+
+### Edge Cases
+
+Edge Case 1 - Zero
+
+```
+Decimal: 0
+Base: 5
+Output: 0
+```
+
+Edge Case 2 - Invalid Digit
+
+```
+Input: 89
+Base: 8
+Output: ERROR (9 invalid in base 8)
+```
+
+---
+
+### Acknowledgement
+
+Please note that the `CipherText()` function is originally written to generate a ciphertext from a plaintext in base 7, but it can be tested with any radix.
