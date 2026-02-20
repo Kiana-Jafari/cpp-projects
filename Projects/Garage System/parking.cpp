@@ -294,6 +294,7 @@ void VehicleFee(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& c
         if (vehicles[i].licensePlate == plate)
         {
             // Calculate the fee based on the time duration and type of the vehicle
+            string type = vehicles[i].vehicleType;
             int spotNumber = vehicles[i].spotNumber;
             int level = vehicles[i].level;
 
