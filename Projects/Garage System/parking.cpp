@@ -1,3 +1,8 @@
+// LEVELS:
+// Motorcycles = 0,
+// Cars = 1,
+// Trucks = 2
+
 #include <iostream>
 #include <string>
 #include <map>
@@ -23,14 +28,6 @@ struct Vehicle {
     int level;
     int spotNumber;
 };
-
-/*  
-    LEVELS:
-
-    Motorcycles = 0,
-    Cars = 1,
-    Trucks = 2
-*/
 
 // Prototype the functions
 void ReadFromFile(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& count);
