@@ -6,6 +6,7 @@
 #include <iostream>
 #include <string>
 #include <map>
+#include <ctime>
 #include <cmath>
 #include <fstream>
 
@@ -183,7 +184,9 @@ void ParkVehicle(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& 
 
     // Get the new vehicle info
     string plate, type;
-    int time, level;
+    int level;
+
+    time_t currentTime = time(nullptr); // Get the current timestamp
 
     cout << "Enter the plate and type of the vehicle: ";
     cin >> plate >> type;
@@ -212,7 +215,7 @@ void ParkVehicle(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& 
 
             vehicles[count].licensePlate = plate;
             vehicles[count].vehicleType = type;
-            vehicles[count].entryTime = time;
+            vehicles[count].entryTime = currentTime;
             vehicles[count].level = level;
             vehicles[count].spotNumber = i;
 
@@ -280,14 +283,12 @@ void VehicleFee(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& c
 {
     // This function gets the license plate of a vehicle and the exit time and calculates the fee (exits).
     string plate;
-    int exitTime;
     float fee = 0.0;
+
+    time_t exitTime = time(nullptr);
 
     cout << "Enter the license plate: ";
     cin >> plate;
-
-    cout << "Enter the exit time: ";
-    cin >> exitTime;
 
     for (int i = 0; i < count; i++)
     {
@@ -302,8 +303,8 @@ void VehicleFee(Vehicle vehicles[], ParkingSpot spots[LEVELS][MAX_SPOTS], int& c
 
             spots[level][spotNumber].occupied = false; // Free the spot
 
-            int duration = exitTime - vehicles[i].entryTime;
-            int hours = ceil(duration / 60.0);
+            double seconds = difftime(exitTime, vehicles[i].entryTime);
+            int hours = ceil(duration / 3600.0);
             fee = hours * rate;
 
             // Shift the elements to the left
