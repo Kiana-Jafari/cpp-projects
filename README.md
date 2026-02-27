@@ -4,7 +4,7 @@ This repository contains all files, source code of projects, and assignments wri
 1. Projects:
   - <a href='https://github.com/Kiana-Jafari/cpp-projects/blob/e17c87f59b8d96a04a988d03492a07af0a6b71a1/Projects/script.cpp'>Store Inventory Management System | Uni's Final Course Project (ICSP)</a>
   - <a href='https://github.com/Kiana-Jafari/cpp-projects/tree/93cbe9decdfdbde4e754463e259c13bd5a3f20d6/Projects/Garage%20System'>Smart Parking Garage Management System</a>
-  - <a href='https://github.com/Kiana-Jafari/cpp-projects/tree/c5223bfac702e104182e3b8475fd8fd95cf89f56/Assignments/Base%20Numbers'>Base Numbers (DLD)</a>
+  - <a href='https://github.com/Kiana-Jafari/cpp-projects/tree/c5223bfac702e104182e3b8475fd8fd95cf89f56/Assignments/Base%20Numbers'>Base Numbers (intro to DLD)</a>
   - <a href='https://github.com/Kiana-Jafari/cpp-projects/tree/229174eca27d4bc5af72b5b3f5c0ea52f2d4b230/Assignments/Uni%20Registration%20System'>Mini Project: University Course Registration System</a>
 
 2. CS50 Computer Science Course Assignments
