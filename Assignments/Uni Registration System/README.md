@@ -53,8 +53,6 @@ In this project, we're going to builf a console-based system that manages:
 
 ## 🧩 What This Program Should Be Able To Do
 
----
-
 1. Register Students
     - Add new students
     - Validate unique studentID
@@ -100,8 +98,6 @@ In this project, we're going to builf a console-based system that manages:
 ---
 
 ## 🎬 Full Simulation Example (From Start to Finish)
-
----
 
 **Step 1 — Add Courses** </br>
 Add two courses:
