@@ -1,0 +1,10 @@
+Operating Systems           | CS301       | 4        | 3            | 0
+Algorithms                  | CS302       | 5        | 3            | 0
+Database Systems            | CS210       | 6        | 3            | 0
+Software Engineering        | CS320       | 5        | 3            | 0
+Artificial Intelligence     | CS410       | 3        | 3            | 0
+Linear Algebra              | MA201       | 7        | 3            | 0
+Probability and Statistics  | ST202       | 6        | 3            | 0
+Digital Logic Design        | EE215       | 4        | 3            | 0
+Computer Architecture       | CS303       | 4        | 3            | 0
+Human Computer Interaction  | CS350       | 5        | 2            | 0

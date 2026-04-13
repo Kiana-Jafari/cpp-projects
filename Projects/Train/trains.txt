@@ -1,0 +1,10 @@
+301 Sunrise_Express London Manchester 07:45 10:05 220 150 Express
+302 Midlands_InterCity Birmingham Leeds 09:10 11:00 180 96 InterCity
+303 Northern_Regional_Line Glasgow Edinburgh 10:20 11:10 160 45 Regional
+304 Coastline_Local Brighton London 12:15 13:40 140 80 Local
+305 Highland_Express Inverness Glasgow 14:30 17:05 200 110 Express
+401 Sunrise_Express Manchester London 11:00 13:20 220 120 Express
+402 Midlands_InterCity Leeds Birmingham 12:20 14:10 180 88 InterCity
+403 Northern_Regional_Line Edinburgh Glasgow 11:40 12:30 160 60 Regional
+404 Coastline_Local London Brighton 15:00 16:30 140 55 Local
+405 Highland_Express Glasgow Inverness 17:30 20:05 200 130 Express

@@ -1,0 +1,10 @@
+Daniel Whitmore     | 241903564 | 9/12/2005  | Computer Science       | 0
+Liam Patterson      | 233178420 | 3/5/2003   | Mechanical Engineering | 0
+Sophia Martinez     | 246590731 | 11/27/2006 | Software Engineering   | 0
+Nathan Cole         | 229416805 | 7/18/2002  | Electrical Engineering | 0
+Olivia Bennett      | 244705912 | 1/30/2005  | Information Systems    | 0
+Ethan Caldwell      | 236891457 | 10/9/2004  | Civil Engineering      | 0
+Amelia Rhodes       | 248304619 | 6/22/2007  | Mathematics            | 0
+Lucas Montgomery    | 231675908 | 2/14/2003  | Economics              | 0
+Grace Holloway      | 243580167 | 8/6/2005   | Computer Engineering   | 0
+Benjamin Clarke     | 227491356 | 12/19/2002 | Physics                | 0
