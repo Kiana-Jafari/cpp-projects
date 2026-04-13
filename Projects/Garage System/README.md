@@ -1,8 +1,7 @@
 # Parking Garage Management System
 
 ## Overview
-This project is a **console-based Parking Garage Management System** designed for a **Basic Programming (BP / CS1)** course.
-It simulates how a real Iranian-style multi-level parking garage operates.
+This project is a **console-based Parking Garage** that simulates how a real Iranian-style multi-level parking garage operates.
 
 The program manages:
 - Vehicle parking and exit
