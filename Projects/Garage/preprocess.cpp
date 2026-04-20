@@ -117,7 +117,7 @@ void ExitVehicle(std::array<Vehicle, MAX_VEHICLES>& vehicles, std::array<std::ar
             // Shift the elements to the left
             count --;
 
-            for (int j = i; j < count; ++j)
+            for (size_t j{i}; j < count; ++j)
             {
                 vehicles.at(j).licensePlate = vehicles.at(j + 1).licensePlate;
                 vehicles.at(j).vehicleType = vehicles.at(j + 1).vehicleType;
