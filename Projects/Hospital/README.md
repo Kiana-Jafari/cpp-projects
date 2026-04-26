@@ -116,6 +116,7 @@ cardioWard.dischargePatient(p1);   // bed becomes free, patient record kept
 
 ## UML Class Diagram
 
+```
 ┌─────────────┐
 │   Person    │
 │─────────────│
@@ -157,3 +158,4 @@ cardioWard.dischargePatient(p1);   // bed becomes free, patient record kept
                                     │ associates (0..1)
                                     ▼
                                  Patient
+```
