@@ -1,4 +1,4 @@
-# Hospital Patient Tracking System
+# 🩺 Hospital Patient Tracking System
 
 ## Overview
 
