@@ -2,92 +2,158 @@
 
 ## Overview
 
-A complete in‑memory hospital management system where a central `Hospital` class owns and manages all wards, persons (patients, doctors, staff), and admissions. 
+A hospital needs a software module to manage patient admissions, bed allocation, and basic medical records. The system tracks patients, doctors, and staff, assigns patients to beds within wards, and stores prescriptions for each patient. Doctors can issue prescriptions, staff can view ward occupancy, and patients can be discharged.
 
-The system demonstrates:
+---
 
-- `Encapsulation` – medical records, prescriptions, bed occupancy.
+## OOP Concepts Covered
 
-- `Abstraction` – abstract Person base class with pure virtual getRole().
-
-- `Inheritance` – Patient, Doctor, Staff derived from Person.
-
-- `Composition` – Hospital owns Wards; Ward owns Beds; Patient owns Prescriptions.
-
-- `Global search` – Hospital maintains lists of all persons for searching by name/ID.
+| Concept | How it appears |
+|---------|----------------|
+| **Class basics** | All entities are defined as classes with constructors, destructors, and member functions. |
+| **Access members** | `private`, `protected`, `public` used appropriately. |
+| **Encapsulation** | Data is hidden; public interfaces control access. Example: `Patient`'s medical history is private, modified only via `addPrescription()`. |
+| **Composition** | `Ward` **owns** its `Bed` objects (if ward destroyed, beds destroyed). `Patient` **owns** its `Prescription` objects. |
+| **Inheritance** | `Patient`, `Doctor`, `Staff` inherit from `Person` |
 
 ---
 
 ## Class Design
 
-1. `Person` (abstract)
-
-- Private: `id` (string), `name` (string), `age` (int)
-- Public: constructor, getters, virtual destructor, pure virtual `
-
----
-
-2. `Patient` : public `Person`
-
-- Private: `admissionDate` (string), `medicalRecord` (string), `vector<Prescription> prescriptions`
-- Public: `addPrescription(const Prescription&)`, `getMedicalSummary()`, `discharge()`, `getPrescriptions() const`
+### Person (concrete base class)
+- `protected:` `id` (string), `name` (string), `age` (int)
+- `public:` Constructor with parameters, getters (`getId()`, `getName()`, `getAge()`), setter for `name` (if needed).
 
 ---
 
-3. `Doctor` : public `Person`
-- Private: `specialization` (string), `employeeId` (string)
-- Public: `writePrescription(Patient& patient, string medicine, string dosage, string date)`
+### Patient : public Person
+- `private:` `admissionDate` (string), `medicalRecord` (string), `vector<Prescription>` prescriptions
+- `public:` Constructor, `addPrescription()`, `getMedicalSummary()`, `discharge()` (clears medical record? or just flags). Accessor for prescriptions.
 
 ---
 
-4. `Staff` : public `Person`
-- Private: `role` (string, e.g., "Nurse"), `shift` (string, e.g., "Day")
-- Public: `transferPatient(Patient& patient, Ward& targetWard, int targetBedNumber)` – static method or staff action
+### Doctor : public Person
+- `private:` `specialization` (string), `employeeId` (string)
+- `public:` Constructor, getters/setters, `writePrescription(Patient&, medicine, dosage)` – creates Prescription and adds to patient.
 
 ---
 
-5. `Prescription` (simple class)
-- Private: `medicine`, `dosage`, `datePrescribed`, `doctorName`
-- Public: constructor, getters (immutable)
+### Staff : public Person
+- `private:` `role` (string, e.g., "Nurse"), `shift` (string)
+- `public:` Constructor, `transferPatient(Patient&, Ward&, Bed&)` – reassigns bed (needs access to Ward/Bed methods).
 
 ---
 
-6. `Bed`
-- Private: `bedNumber` (int), `isOccupied` (bool), `assignedPatientId` (string, or pointer to Patient)
-- Public: `assignPatient(const string& patientId)`, `discharge()`, `isFree()`, `getPatientId()`
+### Prescription
+- `private:` `medicine`, `dosage`, `date`, `doctorName` (all const – set once)
+- `public:` Constructor taking all fields, constant getters only (immutable).
 
 ---
 
-7. Ward
-- Private: `wardName` (string), `vector<Bed> beds` (composition)
-- Public: `addBed(int bedNumber)`, `int findFreeBed()`, `bool admitPatient(const string& patientId, int bedNumber)`, `dischargePatient(int bedNumber)`, `getOccupancyReport()`
+### Bed
+- `private:` `bedNumber` (int), `isOccupied` (bool), `assignedPatient` (Patient*)
+- `public:` Constructor, `assignPatient(Patient&)`, `dischargePatient()`, `isFree()`, `getPatient()`.
 
 ---
 
-## Class Overview
-
-| Class | Key Attributes (private) | Key Methods (public) |
-|-------|--------------------------|----------------------|
-| `Person` (abstract) | `id`, `name`, `age` | `getId()`, `getName()`, `getAge()`, `virtual getRole()` |
-| `Patient` | `admissionDate`, `medicalRecord`, `vector<Prescription>` | `addPrescription()`, `getMedicalSummary()`, `discharge()` |
-| `Doctor` | `specialization`, `employeeId` | `writePrescription(Patient&, medicine, dosage)` |
-| `Staff` | `role` (e.g., "Nurse"), `shift` | `transferPatient(Patient&, Ward&, Bed&)` |
-| `Prescription` | `medicine`, `dosage`, `date`, `doctorName` | Getters only (immutable) |
-| `Bed` | `bedNumber`, `isOccupied`, `Patient* assignedPatient` | `assignPatient()`, `dischargePatient()`, `isFree()` |
-| `Ward` | `wardName`, `vector<Bed>` (composition) | `getFreeBed()`, `admitToWard()`, `getOccupancyReport()` |
+### Ward
+- `private:` `wardName` (string), `vector<Bed>` beds (composition – vector of objects, not pointers)
+- `public:` Constructor (creates N beds), `getFreeBed()` returns index or pointer, `admitToWard(Patient&)`, `dischargePatient(Patient&)`, `getOccupancyReport()`.
 
 ---
 
-### Stage 1: Setup – Create Persons and a Ward
+## Example
+
+### 1. Create Persons and Ward
 
 ```cpp
-// Create a doctor
 Doctor drJones("D100", "Dr. Jones", 42, "Cardiology");
-// Create a staff member (nurse)
 Staff nurseLee("S200", "Nurse Lee", 29, "Nurse", "Morning");
-// Create patients
 Patient p1("P001", "John Doe", 58);
 Patient p2("P002", "Mary Smith", 33);
 
-// Create a ward with 3 beds
-Ward cardioWard("Cardiology", 3);   // Constructor creates Bed objects internally
+Ward cardioWard("Cardiology", 3);   // creates 3 Bed objects inside
+```
+
+### 2. Admit Patients
+
+```cpp
+cardioWard.admitToWard(p1);   // success, first free bed
+cardioWard.admitToWard(p2);   // success, second free bed
+```
+
+### 3. Doctor Writes Prescription
+
+```cpp
+drJones.writePrescription(p1, "Aspirin", "100mg once daily", "2025-04-01");
+// Internally creates Prescription and calls p1.addPrescription()
+```
+
+### 4. Ward Occupancy Report
+
+```cpp
+cardioWard.getOccupancyReport();
+```
+
+### Output
+
+```
+Ward: Cardiology
+Bed 1: Occupied by John Doe (admitted: 2025-04-01)
+  Prescriptions: Aspirin 100mg once daily
+Bed 2: Occupied by Mary Smith (admitted: 2025-04-01)
+  No prescriptions
+Bed 3: Free
+```
+
+### 5. Discharge Patient
+
+```cpp
+cardioWard.dischargePatient(p1);   // bed becomes free, patient record kept
+```
+
+---
+
+## UML Class Diagram
+
+┌─────────────┐
+│   Person    │
+│─────────────│
+│ # id        │
+│ # name      │
+│ # age       │
+│─────────────│
+│ + getters   │
+└─────────────┘
+       ▲
+       │ (inheritance)
+   ┌───┴───┬─────────┐
+   │       │         │
+┌──┴──┐ ┌──┴──┐   ┌──┴──┐
+│Patient│Doctor│   │Staff│
+│──────││──────│   │─────│
+│-admit││-spec │   │-role│
+│-medRec││-empId │   │-shift│
+│-presc ││      │   │     │
+│[comp] ││      │   │     │
+└──────┘└──────┘   └──────┘
+   │
+   │ composes (1..*)
+   ▼
+┌─────────────┐
+│Prescription │
+│─────────────│
+│-medicine    │
+│-dosage      │
+└─────────────┘
+
+┌──────┐     composes (1..*)     ┌─────┐
+│ Ward │─────────────────────────│ Bed │
+│──────│                         │─────│
+│-name │                         │-num │
+│-beds │                         │-occ │
+└──────┘                         │-pat*│
+                                 └─────┘
+                                    │ associates (0..1)
+                                    ▼
+                                 Patient
