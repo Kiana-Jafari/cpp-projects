@@ -6,22 +6,21 @@
 */
 
 #include <iostream>
+#include <array>
 #include <string>
 #include <sstream>
 #include <cmath>
 
-using namespace std;
-
 // Prototype the functions
-int CountWords(string sentence);
-int CountLetters(string sentence);
-int CountSentences(string sentence);
-int ComputeIndex(string text);
+int CountWords(const std::string&);
+int CountLetters(const std::string&);
+int CountSentences(const std::string&);
+int ComputeIndex(const std::string&);
 
 int main()
 {
     // Test Cases
-    string sentences[] = {
+    std::array<std::string, 11> sentences {
         "One fish. Two fish. Red fish. Blue fish.",
         "Would you like them here or there? I would not like them here or there. I would not like them anywhere.",
         "Congratulations! Today is your day. You're off to Great Places! You're off and away!",
@@ -36,84 +35,84 @@ int main()
     };
 
     // Pass each test case to the function
-    for (int i = 0; i < (sizeof(sentences) / sizeof(sentences[0])); i++)
+    for (size_t i{0}; i < sentences.size(); ++i)
     {
-        cout << sentences[i] << endl;
+        std::cout << sentences.at(i) << std::endl;
     
-        int index = ComputeIndex(sentences[i]);
+        int index{ComputeIndex(sentences.at(i))};
 
         if (index < 1)
-        cout << "Before Grade 1. " << "\n\n";
+        std::cout << "Before Grade 1.\n\n";
 
         else if (index >= 16)
-        cout << "Grade 16+" << "\n\n";
+        std::cout << "Grade 16+\n\n";
 
         else
-        cout << "Grade " << index << "\n\n";
+        std::cout << "Grade " << index << "\n\n";
     }
 }
 
-int CountWords(string sentence)
+int CountWords(const std::string& sentence)
 {
     // This function gets a sentence as input and returns the number of word it contains.
-    int NumWords = 0;
-    string word;
+    int NumWords{0};
+    std::string word;
 
-    stringstream ss (sentence);
+    std::stringstream ss (sentence);
 
     while (ss >> word)
-    {
-        NumWords ++;
-    }
+    ++ NumWords;
 
     return NumWords;
 }
 
-int CountLetters(string sentence)
+int CountLetters(const std::string& sentence)
 {
     // This function gets a sentence and returns the number of letters it contains.
-    int NumLetters = 0;
+    int NumLetters{0};
     
-    for (int i = 0; i < sentence.length(); i++)
+    for (size_t i{0}; i < sentence.length(); ++i)
     {
-        if ((sentence[i] >= 'a' && sentence[i] <= 'z') || (sentence[i] >= 'A' && sentence[i] <= 'Z'))
-        {
-            NumLetters ++;
-        }
+        if (
+            (sentence.at(i) >= 'a' && sentence.at(i) <= 'z') || 
+            (sentence.at(i) >= 'A' && sentence.at(i) <= 'Z'))
+            
+            ++ NumLetters;
     }
 
     return NumLetters;
 }
 
-int CountSentences(string sentence)
+int CountSentences(const std::string& sentence)
 {
     // This function gets a sentence and returns the number of sub-sentences.
-    int NumSentences = 0;
+    int NumSentences{0};
 
-    for (int i = 0; i < sentence.length(); i++)
+    for (size_t i{0}; i < sentence.length(); ++i)
     {
-        if (sentence[i] == '.' || sentence[i] == '?' || sentence[i] == '!')
-        {
-            NumSentences ++;
-        }
+        if (
+            sentence.at(i) == '.' || 
+            sentence.at(i) == '?' || 
+            sentence.at(i) == '!'
+        )
+        
+        ++ NumSentences;
     }
 
     return NumSentences;
 }
 
-int ComputeIndex(string text)
+int ComputeIndex(const std::string& text)
 {
     // This function gets the number of words, letters, and sub-sentences in a sentence, and returns the written level (index) of the sentence.
-    int words = CountWords(text);
-    int letters = CountLetters(text);
-    int sentences = CountSentences(text);
+    int words{CountWords(text)};
+    int letters{CountLetters(text)};
+    int sentences{CountSentences(text)};
 
-    float avgLetters = 0, avgSentence = 0;
+    double avgLetters{static_cast <float> (letters) / words * 100}; 
+    double avgSentence{static_cast <float> (sentences) / words * 100}; 
 
-    avgLetters = static_cast <float> (letters) / words * 100; 
-    avgSentence = static_cast <float> (sentences) / words * 100; 
-
-    float index = round(0.0588 * avgLetters - 0.296 * avgSentence - 15.8);
+    double index{round(0.0588 * avgLetters - 0.296 * avgSentence - 15.8)};
 
     return index;
 }
