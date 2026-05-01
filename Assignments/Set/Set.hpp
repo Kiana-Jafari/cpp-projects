@@ -62,7 +62,7 @@ public:
 
     void getInput()
     {
-        int input;
+        unsigned int input;
         
         std::cout << "Enter the size of the array: (size should be <= " << capacity << "): ";
         std::cin >> input;
