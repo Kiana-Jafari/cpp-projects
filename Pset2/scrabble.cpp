@@ -15,7 +15,7 @@
 const size_t COUNT{26};
 
 // Prototype the function
-int ComputeScore(
+unsigned int ComputeScore(
     std::array<int, COUNT>&, 
     const std::array<char, COUNT>&, 
     const std::string&
@@ -48,8 +48,8 @@ int main()
     std::cout << "Player 2: ";
     std::cin >> wordTwo;
 
-    int scoreOne = ComputeScore(values, letters, wordOne);
-    int scoreTwo = ComputeScore(values, letters, wordOne);
+    unsigned int scoreOne = ComputeScore(values, letters, wordOne);
+    unsigned int scoreTwo = ComputeScore(values, letters, wordOne);
 
     if (scoreOne > scoreTwo)
     std::cout << "Player 1 wins! ";
@@ -61,7 +61,7 @@ int main()
     std::cout << "Tie! ";
 }
 
-int ComputeScore(
+unsigned int ComputeScore(
     std::array<int, COUNT>& values, 
     const std::array<char, COUNT>& letters, 
     const std::string& word)
