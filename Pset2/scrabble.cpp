@@ -8,52 +8,64 @@
 */
 
 #include <iostream>
+#include <array>
 #include <string>
 #include <cmath>
 
-using namespace std;
+const size_t COUNT{26};
 
 // Prototype the function
-int ComputeScore(string letter);
+int ComputeScore(
+    std::array<int, COUNT>&, 
+    const std::array<char, COUNT>&, 
+    const std::string&
+);
 
 int main()
 {
-    string wordOne, wordTwo;
+    // Structures
+    const size_t count{26};
 
-    cout << "Player 1: ";
-    cin >> wordOne;
+    std::array<char, count> letters{'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+    std::array<int, count> values{1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
 
-    cout << "Player 2: ";
-    cin >> wordTwo;
+    // Input
+    std::string wordOne, wordTwo;
 
-    int scoreOne = ComputeScore(wordOne);
-    int scoreTwo = ComputeScore(wordTwo);
+    std::cout << "Player 1: ";
+    std::cin >> wordOne;
+
+    std::cout << "Player 2: ";
+    std::cin >> wordTwo;
+
+    int scoreOne = ComputeScore(values, letters, wordOne);
+    int scoreTwo = ComputeScore(values, letters, wordOne);
 
     if (scoreOne > scoreTwo)
-    cout << "Player 1 wins! ";
+    std::cout << "Player 1 wins! ";
 
     else if (scoreTwo > scoreOne)
-    cout << "Player 2 wins! ";
+    std::cout << "Player 2 wins! ";
 
     else
-    cout << "Tie! ";
+    std::cout << "Tie! ";
 }
 
-int ComputeScore(string word)
+int ComputeScore(
+    std::array<int, COUNT>& values, 
+    const std::array<char, COUNT>& letters, 
+    const std::string& word)
+
 {
     // This function gets a string and calculates the sum of its characters according to the values array.
-    int sum = 0;
-    char letters[] = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-    int values[] = {1, 3, 3, 2, 1, 4, 2, 4, 1, 8, 5, 1, 3, 1, 1, 3, 10, 1, 1, 1, 1, 4, 4, 8, 4, 10};
-    
-    for (int i = 0; i < word.length(); i++)
+    unsigned int sum{0};
+       
+    for (size_t i{0}; i < word.length(); ++i)
     {
-        for (int j = 0; j < (sizeof(letters) / sizeof(letters[0])); j++)
+        for (size_t j{0}; j < letters.size(); ++j)
         {
-            if (toupper(word[i]) == letters[j])
-            {
-                sum += values[j];
-            }
+            if (toupper(word.at(i)) == letters.at(j))
+            sum += values.at(j);
         }
     }
 
