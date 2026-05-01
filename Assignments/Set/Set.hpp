@@ -62,12 +62,14 @@ public:
 
     void getInput()
     {
-        std::cout << "Enter the size of the array: (size should be <= " << capacity << " )";
-        std::cin >> n;
+        int input;
+        
+        std::cout << "Enter the size of the array: (size should be <= " << capacity << "): ";
+        std::cin >> input;
 
-        if (isValid())
+        if (isValid(input))
         {
-            for (size_t i{0}; i < n; ++i)
+            for (size_t i{0}; i < input; ++i)
             {
                 // get n input from the user
                 T number;
@@ -153,9 +155,9 @@ private:
         }
     }
 
-    bool isValid() const
+    bool isValid(const int input) const
     {
-        if (n < 0 || n > capacity) // check whether user entered a positive value for n
+        if (input < 0 || input > capacity) // check whether user entered a valid value for n
         return false;
 
         else
