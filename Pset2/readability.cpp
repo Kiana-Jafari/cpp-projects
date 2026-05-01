@@ -12,10 +12,10 @@
 #include <cmath>
 
 // Prototype the functions
-int CountWords(const std::string&);
-int CountLetters(const std::string&);
-int CountSentences(const std::string&);
-int ComputeIndex(const std::string&);
+unsigned int CountWords(const std::string&);
+unsigned int CountLetters(const std::string&);
+unsigned int CountSentences(const std::string&);
+unsigned int ComputeIndex(const std::string&);
 
 int main()
 {
@@ -39,7 +39,7 @@ int main()
     {
         std::cout << sentences.at(i) << std::endl;
     
-        int index{ComputeIndex(sentences.at(i))};
+        unsigned int index{ComputeIndex(sentences.at(i))};
 
         if (index < 1)
         std::cout << "Before Grade 1.\n\n";
@@ -52,10 +52,10 @@ int main()
     }
 }
 
-int CountWords(const std::string& sentence)
+unsigned int CountWords(const std::string& sentence)
 {
     // This function gets a sentence as input and returns the number of word it contains.
-    int NumWords{0};
+    unsigned int NumWords{0};
     std::string word;
 
     std::stringstream ss (sentence);
@@ -66,10 +66,10 @@ int CountWords(const std::string& sentence)
     return NumWords;
 }
 
-int CountLetters(const std::string& sentence)
+unsigned int CountLetters(const std::string& sentence)
 {
     // This function gets a sentence and returns the number of letters it contains.
-    int NumLetters{0};
+    unsigned int NumLetters{0};
     
     for (size_t i{0}; i < sentence.length(); ++i)
     {
@@ -83,10 +83,10 @@ int CountLetters(const std::string& sentence)
     return NumLetters;
 }
 
-int CountSentences(const std::string& sentence)
+unsigned int CountSentences(const std::string& sentence)
 {
     // This function gets a sentence and returns the number of sub-sentences.
-    int NumSentences{0};
+    unsigned int NumSentences{0};
 
     for (size_t i{0}; i < sentence.length(); ++i)
     {
@@ -102,12 +102,12 @@ int CountSentences(const std::string& sentence)
     return NumSentences;
 }
 
-int ComputeIndex(const std::string& text)
+unsigned int ComputeIndex(const std::string& text)
 {
     // This function gets the number of words, letters, and sub-sentences in a sentence, and returns the written level (index) of the sentence.
-    int words{CountWords(text)};
-    int letters{CountLetters(text)};
-    int sentences{CountSentences(text)};
+    unsigned int words{CountWords(text)};
+    unsigned int letters{CountLetters(text)};
+    unsigned int sentences{CountSentences(text)};
 
     double avgLetters{static_cast <double> (letters) / words * 100}; 
     double avgSentence{static_cast <double> (sentences) / words * 100}; 
