@@ -14,7 +14,7 @@ public:
     ~Polynomial();
 
     void getPolynomial();
-    std::string printPolynomial();
+    std::string printPolynomial() const;
     Polynomial operator+(const Polynomial&) const;
     Polynomial operator*(const Polynomial&) const;
 
