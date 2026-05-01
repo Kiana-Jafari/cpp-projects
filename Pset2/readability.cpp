@@ -109,8 +109,8 @@ int ComputeIndex(const std::string& text)
     int letters{CountLetters(text)};
     int sentences{CountSentences(text)};
 
-    double avgLetters{static_cast <float> (letters) / words * 100}; 
-    double avgSentence{static_cast <float> (sentences) / words * 100}; 
+    double avgLetters{static_cast <double> (letters) / words * 100}; 
+    double avgSentence{static_cast <double> (sentences) / words * 100}; 
 
     double index{round(0.0588 * avgLetters - 0.296 * avgSentence - 15.8)};
 
