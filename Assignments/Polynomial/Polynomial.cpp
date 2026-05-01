@@ -60,7 +60,7 @@ Polynomial Polynomial::operator*(const Polynomial& poly) const
     return product;
 }
 
-std::string Polynomial::printPolynomial()
+std::string Polynomial::printPolynomial() const
 {
     // display the polynomial
     std::ostringstream output;
