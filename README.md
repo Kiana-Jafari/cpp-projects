@@ -13,5 +13,7 @@ This repository contains all files, source code of projects, and assignments wri
    
 3. Assignments:
    - <a href='https://github.com/Kiana-Jafari/cpp-projects/blob/a6216ca65bc35bff4ae1d892d2be8221359e6010/Assignments/username.cpp'>Recognize if an account is fake (University of Tehran)</a>
+   - <a href='https://github.com/Kiana-Jafari/cpp-projects/tree/main/Assignments/Set'>Class Set - Operator Overloading (Uni)</a>
+   - <a href='https://github.com/Kiana-Jafari/cpp-projects/tree/main/Assignments/Polynomial'>Class Polynomial - Operator Overloading (Uni)</a>
    - <a href='https://github.com/Kiana-Jafari/cpp-projects/tree/main/Assignments/Package'>Deitel - Inheritance: Package</a>
    - <a href='https://github.com/Kiana-Jafari/cpp-projects/tree/main/Assignments/Account'>Deitel - Inheritance: Account</a>
