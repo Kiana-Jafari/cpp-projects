@@ -1,8 +1,8 @@
 #include <tuple>
 #include <string>
 
-#ifndef RATIONAL_H
-#define RATIONAL_H
+#ifndef RATIONAL_HPP
+#define RATIONAL_HPP
 
 class Rational
 {
