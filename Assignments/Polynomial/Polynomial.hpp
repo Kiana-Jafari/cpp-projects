@@ -1,8 +1,8 @@
 #include <array>
 #include <string>
 
-#ifndef POLYNOMIAL_H
-#define POLYNOMIAL_H
+#ifndef POLYNOMIAL_HPP
+#define POLYNOMIAL_HPP
 
 class Polynomial {
 
