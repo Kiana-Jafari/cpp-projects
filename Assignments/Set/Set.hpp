@@ -2,8 +2,8 @@
 #include <iostream>
 #include <fstream>
 
-#ifndef SET_H
-#define SET_H
+#ifndef SET_HPP
+#define SET_HPP
 
 template <class T> // for class int, double (or float), char
 
