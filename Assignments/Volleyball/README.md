@@ -22,8 +22,7 @@ In addition to the constructor, define the following functions for the `Team` cl
 |Function Name|Argument(s)|Return Type|Description|
 |-------------|-----------|-----------|-----------|
 |setCoach|A Coach object|void|Sets the team's coach information.|
-|setTeam|(parameters of your choice)|void|Assigns the team's information.|
-insertPlayer|A Player object p|void|If player p is not already a member of the team, adds them to the team.|
+|insertPlayer|A Player object p|void|If player p is not already a member of the team, adds them to the team.|
 |isPlayerPresent|A Player object p|boolean|Returns true if player p is a member of the team, otherwise false.|
 |deletePlayer|A Player object p|void|If player p is a member of the team, removes them from the team.|
 |show|None|void|Prints all team information.|
